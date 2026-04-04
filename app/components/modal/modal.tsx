@@ -24,7 +24,7 @@ const Modal = ({
         }
     }, [delay, showImmidiatly]);
 
-    const handleCloseClick = (e) => {
+    const handleCloseClick = (e: React.MouseEvent) => {
         e.preventDefault();
         setIsOpen(false);
         onClose();
