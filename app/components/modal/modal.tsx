@@ -1,26 +1,57 @@
-'use client';
+import React, {useEffect, useState} from "react";
+import ReactDOM from "react-dom";
+import "./modal.css";
 
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import {useEffect, useState} from "react";
+const Modal = ({
+                   showImmidiatly=false ,
+                   onClose=()=> {},
+                   children='content',
+                   title='title',
+                   delay = 3000,
+                   className=""
+}) => {
+    const [isOpen, setIsOpen] = useState(showImmidiatly);
+    const [isMounted, setIsMounted] = useState(false);
 
-export default function Modal() {
-    const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setOpen(true);
-        }, 10000);
-        return () => clearTimeout(timer);
-    }, []);
+        setIsMounted(true);
+        if (!showImmidiatly) {
+            const timer = setTimeout(() => {
+                setIsOpen(true);
+            }, delay);
+            return () => clearTimeout(timer);
+        }
+    }, [delay, showImmidiatly]);
 
-    return (
-      <Popup open={open} onClose={() => setOpen(false)} modal>
-            <div style={{
-                background: 'red',
-                width: '50vw',
-                height: '50vh'}}>
+    const handleCloseClick = (e) => {
+        e.preventDefault();
+        setIsOpen(false);
+        onClose();
+    };
+
+    if (!isMounted || !isOpen) return null;
+
+    const modalContent = (
+        <div className="modal-overlay">
+            <div className="modal-wrapper">
+                <div className={`modal ${className}`}>
+                    <div className="modal-header">
+                        <a href="#" onClick={handleCloseClick}>
+                            x
+                        </a>
+                    </div>
+                    {title && <h1>{title}</h1>}
+                    <div className="modal-body">{children}</div>
+                </div>
             </div>
-      </Popup>
+        </div>
     );
-}
+
+    return ReactDOM.createPortal(
+        modalContent,
+        document.getElementById("modal-root")
+    );
+};
+
+export default Modal
