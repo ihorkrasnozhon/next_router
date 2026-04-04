@@ -48,9 +48,15 @@ const Modal = ({
         </div>
     );
 
+    const modalRoot = document.getElementById("modal-root");
+
+    if (!modalRoot) {
+        return null;
+    }
+
     return ReactDOM.createPortal(
         modalContent,
-        document.getElementById("modal-root")
+        modalRoot
     );
 };
 
