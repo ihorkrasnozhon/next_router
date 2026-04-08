@@ -4,7 +4,7 @@ import "./modal.css";
 
 const Modal = ({
                    showImmidiatly=false ,
-                   onClose=()=> {},
+                   onClose= (e: React.MouseEvent)=> {},
                    children='content',
                    title='title',
                    delay = 3000,
@@ -27,7 +27,7 @@ const Modal = ({
     const handleCloseClick = (e: React.MouseEvent) => {
         e.preventDefault();
         setIsOpen(false);
-        onClose();
+        onClose(e);
     };
 
     if (!isMounted || !isOpen) return null;
