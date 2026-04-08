@@ -4,7 +4,7 @@ import {motion} from "framer-motion";
 
 interface ContainerProps {
     data: any[];
-    dragCardId: any;
+    dragCard: any;
 }
 
 const CardContainer = ({data=[], dragCard}: ContainerProps) => {

@@ -1,11 +1,13 @@
+import React from 'react';
+
 const Card = ({ id, dragCard, name }: any) => {
 
-    const handleDragStart = (e) => {
+    const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
         dragCard.current = id;
         e.currentTarget.style.opacity = '0';
     }
 
-    const handleDragEnd = (e) => {
+    const handleDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
         e.currentTarget.style.opacity = '1';
     }
 
