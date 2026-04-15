@@ -3,12 +3,19 @@ import {create} from 'zustand';
 import {persist} from 'zustand/middleware';
 import { Group, Button, Text } from '@mantine/core';
 
-const useStore = create(
+interface CounterState {
+    count: number;
+    increment: () => void;
+    decrement: () => void;
+    reset: () => void;
+}
+
+const useStore = create<CounterState>()(
     persist(
         (set) => ({
             count: 0,
-            increment: () => set((state) => ({count: state.count + 1})),
-            decrement: () => set((state) => ({count: state.count - 1})),
+            increment: () => set((state: CounterState) => ({count: state.count + 1})),
+            decrement: () => set((state: CounterState) => ({count: state.count - 1})),
             reset: () => set({count: 0}),
         }),
         {

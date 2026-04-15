@@ -1,7 +1,12 @@
 import {CustomSelect} from "@/app/components/rhf-input/select";
 import CustomInput from "@/app/components/rhf-input/input";
+import {FieldValues, UseFormRegister} from "react-hook-form";
 
-export default function CustomAddressForm ({register}) {
+interface props {
+    register: UseFormRegister<FieldValues>;
+}
+
+export default function CustomAddressForm ({register}: props) {
     const countries = ['Poland','Ukraine', 'Germany','USA', 'US'];
 
     return (

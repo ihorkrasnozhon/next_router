@@ -1,6 +1,11 @@
 import CustomInput from "@/app/components/rhf-input/input";
+import {FieldValues, UseFormRegister} from "react-hook-form";
 
-export default function CustomInstructionsForm ({register}) {
+interface props {
+    register: UseFormRegister<FieldValues>;
+}
+
+export default function CustomInstructionsForm ({register}: props) {
     return (
         <div>
             <h1>Add delivery instructions</h1>

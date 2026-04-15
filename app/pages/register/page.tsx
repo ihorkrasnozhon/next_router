@@ -7,6 +7,8 @@ import {persist} from "zustand/middleware";
 import {useEffect} from "react";
 import {z} from "zod";
 
+
+
 const useStore = create(
     persist(
         (set) => ({
@@ -16,35 +18,33 @@ const useStore = create(
             terms: false,
             mood: null,
             _hasHydrated: false,
-            setHasHydrated: (state) => set({ _hasHydrated: state }),
+            setHasHydrated: (state: boolean) => set({ _hasHydrated: state }),
 
-            setField: (field, value) => set({[field]: value}),
+            setField: (field: any, value: any) => set({[field]: value}),
         }),
         {
             name: 'register-storage',
-            onRehydrateStorage: () => (state) => {
+            onRehydrateStorage: () => (state: any) => {
                 state?.setHasHydrated(true)
             },
         }
     )
 )
 
-const savedEmail ='', savedMood ='', hasHydrated = false, setField = () => {}
 export default function Register () {
-    // const setField = useStore(state => state.setField);
-    // const savedState = useStore(state => state);
-    //
-    //
-    // const savedEmail = useStore(state => state.email);
-    // const savedMood = useStore(state => state.mood);
-    // const hasHydrated = useStore((state) => state._hasHydrated)
+    const setField = useStore(state => state.setField);
+
+
+    const savedEmail = useStore(state => state.email);
+    const savedMood = useStore(state => state.mood);
+    const hasHydrated = useStore((state) => state._hasHydrated)
 
 
     console.log('render')
 
-    const form = useForm<>({
+    const form = useForm({
         mode: 'uncontrolled',
-       // validateInputOnBlur: true,
+       validateInputOnBlur: true,
         initialValues: {
             email: savedEmail || '',
             password: '',
@@ -53,12 +53,12 @@ export default function Register () {
             mood: savedMood || null
         },
 
-        // validate: {
-        //     email: (value) => (z.email(value) ? null : 'Invalid email'),
-        //     password: (value) => isStrongPassword(value) ? null : 'Too weak password: Add uppercase, digits and symbols',
-        //     confirmPassword: (value, values) =>
-        //         value !== values.password ? 'Passwords did not match' : null,
-        // }
+        validate: {
+            email: (value) => (z.email(value) ? null : 'Invalid email'),
+            password: (value) => isStrongPassword(value) ? null : 'Too weak password: Add uppercase, digits and symbols',
+            confirmPassword: (value, values) =>
+                value !== values.password ? 'Passwords did not match' : null,
+        }
     })
 
     useEffect(() => {
@@ -119,7 +119,6 @@ export default function Register () {
                     setField('mood', e.currentTarget.value);
                 }}
             />
-            {console.log(form.getInputProps('mood'))}
             <Checkbox
                 mt="md"
                 label="I agree to terms"
