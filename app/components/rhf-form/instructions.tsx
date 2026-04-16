@@ -5,7 +5,7 @@ interface props {
     register: UseFormRegister<FieldValues>;
 }
 
-export default function CustomInstructionsForm ({register}: props) {
+export default function CustomInstructionsForm({register}: props) {
     return (
         <div>
             <h1>Add delivery instructions</h1>
@@ -13,8 +13,10 @@ export default function CustomInstructionsForm ({register}: props) {
             <CustomInput type={'text'} label={'Do we need a security code?'} register={register('code')}/>
             <h2>Weekend delivery</h2>
             <p>I can receive packages on</p>
-            <CustomInput label={'Saturday'} type={'checkbox'} register={register('saturday')}/>
-            <CustomInput label={'Sunday'} type={'checkbox'} register={register('sunday')}/>
+            <div className='flex flex-row gap-4'>
+                <CustomInput styles={'flex flex-row-reverse'} label={'Saturday'} type={'checkbox'} register={register('saturday')}/>
+                <CustomInput styles={'flex flex-row-reverse'} label={'Sunday'} type={'checkbox'} register={register('sunday')}/>
+            </div>
         </div>
     )
 }
