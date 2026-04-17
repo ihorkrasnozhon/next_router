@@ -6,13 +6,14 @@ interface props {
 
 export const CustomSelect = ({label, options, register}: props) => {
     return (
-        <div>
+        <div className={styles}>
             <label>{label}</label>
             <select {...register}>
                 {options.map(o => (
                     <option key={o} value={o}>{o}</option>
                 ))}
             </select>
+            <CustomInputError name={name}/>
         </div>
     );
 }

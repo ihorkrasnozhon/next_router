@@ -1,10 +1,8 @@
 import {CustomSelect} from "@/app/components/rhf-input/select";
 import CustomInput from "@/app/components/rhf-input/input";
-import {FieldValues, UseFormRegister} from "react-hook-form";
-
-interface props {
-    register: UseFormRegister<FieldValues>;
-}
+import CustomPhoneInput from "@/app/components/rhf-input/phone";
+import CustomPostcodeInput from "@/app/components/rhf-input/postcode";
+import {useFormContext} from "react-hook-form";
 
 export default function CustomAddressForm ({register}: props) {
     const countries = ['Poland','Ukraine', 'Germany','USA', 'US'];
@@ -12,14 +10,14 @@ export default function CustomAddressForm ({register}: props) {
     return (
         <div>
             <h1>Edit your address</h1>
-            <CustomSelect label={'Country/Region'} options={countries} register={register('country')}/>
-            <CustomInput label={'Full name'} type={'text'} register={register('fullname')}/>
-            <CustomInput label={'Phone number'} type={'number'} register={register('phone')}/>
-            <CustomInput label={'Postcode'} type={'text'} register={register('postcode')}/>
-            <CustomInput label={'Address Line 1'} type={'text'} register={register('address1')}/>
-            <CustomInput label={'Address Line 2'} type={'text'} register={register('address2')}/>
-            <CustomInput label={'Town/City'} type={'text'} register={register('town')}/>
-            <CustomInput label={'County'} type={'text'} register={register('county')}/>
+            <CustomSelect label={'Country/Region'} options={countries} name="country"/>
+            <CustomInput label={'Full name'} type={'text'} name={'fullname'} validation={{required: 'Required'}}/>
+            <CustomPhoneInput label={'Phone number'} name="phone"/>
+            <CustomPostcodeInput label={'Postcode'} name={'postcode'}/>
+            <CustomInput label={'Address Line 1'} type={'text'} name={'address1'}/>
+            <CustomInput label={'Address Line 2'} type={'text'} name={'address2'}/>
+            <CustomInput label={'Town/City'} type={'text'} name={'town'}/>
+            <CustomInput label={'County'} type={'text'} name={'county'}/>
         </div>
 
     );

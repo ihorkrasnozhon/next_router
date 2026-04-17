@@ -8,7 +8,8 @@ interface props {
     className?: string;
 }
 
-export default function FormWrapper ({children, methods, onSubmit, className}: props) {
+export default function FormWrapper ({children, methods, onSubmit, className=''}: props) {
+    //@ts-ignore
     return (
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)} className={className}>

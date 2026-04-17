@@ -7,7 +7,6 @@ import FormWrapper from "@/app/components/rhf-form/form-wrapper";
 
 export default function Amazon() {
     const methods = useForm();
-    const { register } = methods;
 
     const onSubmit = (data: any) => console.log(data)
 
