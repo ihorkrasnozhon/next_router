@@ -3,7 +3,8 @@ import CustomInput from "@/app/components/rhf-input/input";
 import CustomPhoneInput from "@/app/components/rhf-input/phone";
 import CustomPostcodeInput from "@/app/components/rhf-input/postcode";
 
-export default function CustomAddressForm ({register}: props) {
+export default function CustomAddressForm () {
+
     const countries = ['Poland','Ukraine', 'Germany','USA', 'US'];
 
 

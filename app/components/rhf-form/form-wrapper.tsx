@@ -12,7 +12,7 @@ export default function FormWrapper ({children, methods, onSubmit, className=''}
     //@ts-ignore
     return (
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)} className={className}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} className={className || ''}>
             {children}
         </form>
       </FormProvider>

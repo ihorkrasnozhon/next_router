@@ -1,19 +1,28 @@
+import {useFormContext} from "react-hook-form";
+
 interface props {
     label: string;
     options: string[];
-    register: any;
+    name: string;
+    validation?: object;
+    styles?: string;
 }
 
-export const CustomSelect = ({label, options, register}: props) => {
+export const CustomSelect = ({label, options, validation, name, styles=''}: props) => {
+    const {register, formState:{errors}} = useFormContext()
     return (
         <div className={styles}>
             <label>{label}</label>
-            <select {...register}>
+            <select {...register(name, validation)}>
                 {options.map(o => (
                     <option key={o} value={o}>{o}</option>
                 ))}
             </select>
-            <CustomInputError name={name}/>
+            {!!errors && (
+                <span className="text-red-600 text-xs mt-1">
+                    {errors[name]?.message as string}
+                </span>
+            )}
         </div>
     );
 }
