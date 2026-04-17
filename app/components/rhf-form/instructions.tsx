@@ -1,11 +1,7 @@
 import CustomInput from "@/app/components/rhf-input/input";
-import {useFormContext} from "react-hook-form";
 
 
 export default function CustomInstructionsForm() {
-
-    const { register } = useFormContext();
-
 
     return (
         <div>

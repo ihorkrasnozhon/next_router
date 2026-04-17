@@ -2,7 +2,6 @@ import {CustomSelect} from "@/app/components/rhf-input/select";
 import CustomInput from "@/app/components/rhf-input/input";
 import CustomPhoneInput from "@/app/components/rhf-input/phone";
 import CustomPostcodeInput from "@/app/components/rhf-input/postcode";
-import {useFormContext} from "react-hook-form";
 
 export default function CustomAddressForm ({register}: props) {
     const countries = ['Poland','Ukraine', 'Germany','USA', 'US'];
