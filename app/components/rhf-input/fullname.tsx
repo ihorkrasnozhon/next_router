@@ -2,16 +2,20 @@ import {useFormContext} from "react-hook-form";
 import CustomInputError from "@/app/components/rhf-input/error";
 import {BaseProps} from "@/app/components/rhf-input/base-props";
 
-interface props extends BaseProps{
+interface props extends BaseProps {
     type: string;
 }
 
-const CustomInput = ({ label, type, name, validation, styles='',required }: props ) => {
+export default function CustomFullnameInput({label, type, name, validation, styles = '', required}: props) {
 
-    const {register, formState:{errors}} = useFormContext();
+    const {register, formState: {errors}} = useFormContext();
 
     const defaultValidation = {
-
+        pattern: {
+            value: /^[a-zA-Zа-яА-ЯёЁіІїЇєЄ'’\s-]+$/,
+            message: "letters, spaces, hyphens and apostrophes allowed"
+        },
+        minLength: {value: 2, message: 'Too short'},
     }
 
 
@@ -22,11 +26,10 @@ const CustomInput = ({ label, type, name, validation, styles='',required }: prop
                 required,
                 ...defaultValidation,
                 ...validation,
-                })}/>
+            })}/>
 
             <CustomInputError name={name}/>
         </div>
     );
-};
+}
 
-export default CustomInput;

@@ -1,15 +1,13 @@
 import {useFormContext} from "react-hook-form";
+import {BaseProps} from "@/app/components/rhf-input/base-props";
 
-interface props {
-    label: string;
+interface props extends BaseProps{
     options: string[];
-    name: string;
-    validation?: object;
-    styles?: string;
 }
 
 export const CustomSelect = ({label, options, validation, name, styles=''}: props) => {
     const {register, formState:{errors}} = useFormContext()
+    //@ts-ignore
     return (
         <div className={styles}>
             <label>{label}</label>

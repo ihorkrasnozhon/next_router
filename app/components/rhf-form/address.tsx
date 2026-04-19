@@ -2,6 +2,8 @@ import {CustomSelect} from "@/app/components/rhf-input/select";
 import CustomInput from "@/app/components/rhf-input/input";
 import CustomPhoneInput from "@/app/components/rhf-input/phone";
 import CustomPostcodeInput from "@/app/components/rhf-input/postcode";
+import CustomFullnameInput from "@/app/components/rhf-input/fullname";
+import CustomAddressInput from "@/app/components/rhf-input/address";
 
 export default function CustomAddressForm () {
 
@@ -11,12 +13,12 @@ export default function CustomAddressForm () {
     return (
         <div>
             <h1>Edit your address</h1>
-            <CustomSelect label={'Country/Region'} options={countries} name="country"/>
-            <CustomInput label={'Full name'} type={'text'} name={'fullname'} validation={{required: 'Required'}}/>
-            <CustomPhoneInput label={'Phone number'} name="phone"/>
-            <CustomPostcodeInput label={'Postcode'} name={'postcode'}/>
-            <CustomInput label={'Address Line 1'} type={'text'} name={'address1'}/>
-            <CustomInput label={'Address Line 2'} type={'text'} name={'address2'}/>
+            <CustomSelect label={'Country/Region'} required options={countries} name="country"/>
+            <CustomFullnameInput label={'Full name'} type={'text'} name={'fullname'} required/>
+            <CustomPhoneInput label={'Phone number'} required name="phone"/>
+            <CustomPostcodeInput label={'Postcode'} required name={'postcode'}/>
+            <CustomAddressInput label={'Address Line 1'} required name={'address1'}/>
+            <CustomAddressInput label={'Address Line 2'} name={'address2'}/>
             <CustomInput label={'Town/City'} type={'text'} name={'town'}/>
             <CustomInput label={'County'} type={'text'} name={'county'}/>
         </div>
